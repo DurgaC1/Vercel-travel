@@ -7,7 +7,7 @@ const Testimonials = () => {
       name: "Sarah Johnson",
       role: "Digital Nomad",
       image: "https://images.unsplash.com/photo-1494790108755-2616b2c4c1e4?w=64&h=64&fit=crop&crop=face",
-      content: "TravelAI planned my 3-week European trip better than any travel agent could. The AI suggestions were spot-on and saved me hours of research.",
+      content: "Travel Genie planned my 3-week European trip better than any travel agent could. The AI suggestions were spot-on and saved me hours of research.",
       rating: 5
     },
     {
@@ -82,7 +82,7 @@ const Testimonials = () => {
           <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl p-8 md:p-12 text-white">
             <h3 className="text-3xl font-bold text-white mb-4">Ready to Plan Your Next Adventure?</h3>
             <p className="text-xl text-white/90 mb-8">
-              Join over 1 million travelers who trust TravelAI for their perfect trips.
+              Join over 1 million travelers who trust Travel Genie for their perfect trips.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-purple-500 text-white font-semibold px-8 py-3 rounded-lg hover:bg-purple-600 transition-colors">

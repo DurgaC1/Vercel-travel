@@ -25,7 +25,7 @@ const About: React.FC = () => {
       photo: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150",
       destination: "Tokyo, Japan",
       rating: 4.8,
-      text: "TravelAI made my trip to Tokyo seamless! The safety alerts and itinerary suggestions were spot-on."
+      text: "Travel Genie made my trip to Tokyo seamless! The safety alerts and itinerary suggestions were spot-on."
     },
     {
       name: "Michael Chen",
@@ -86,7 +86,7 @@ const About: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Discover the world with TravelAI’s intelligent planning tools and safety-focused features.
+              Discover the world with Travel Genie’s intelligent planning tools and safety-focused features.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -130,7 +130,7 @@ const About: React.FC = () => {
                 transition={{ type: "spring", stiffness: 200 }}
               >
                 <p className="text-gray-600 text-base sm:text-lg mb-4">
-                  At TravelAI, we simplify travel with cutting-edge AI technology, helping you save time and reduce stress. Our platform crafts personalized experiences, from curated hotel recommendations to tailored itineraries, ensuring every journey is unforgettable.
+                  At Travel Genie, we simplify travel with cutting-edge AI technology, helping you save time and reduce stress. Our platform crafts personalized experiences, from curated hotel recommendations to tailored itineraries, ensuring every journey is unforgettable.
                 </p>
                 <p className="text-gray-600 text-base sm:text-lg">
                   We’re here to make travel planning effortless, safe, and exciting for everyone, whether you’re a solo adventurer or a family on vacation.
@@ -284,7 +284,7 @@ const About: React.FC = () => {
                 transition={{ type: "spring", stiffness: 200 }}
               >
                 <p className="text-gray-600 text-base sm:text-lg mb-4">
-                  Founded by a team of passionate travelers and tech enthusiasts, TravelAI was born to make travel planning effortless and secure. Our mission is to empower every traveler with AI-driven tools and reliable information.
+                  Founded by a team of passionate travelers and tech enthusiasts, Travel Genie was born to make travel planning effortless and secure. Our mission is to empower every traveler with AI-driven tools and reliable information.
                 </p>
                 <p className="text-gray-600 text-base sm:text-lg">
                   From solo adventurers to family vacations, we’re here to ensure your journey is as memorable as the destination.
@@ -378,12 +378,12 @@ const About: React.FC = () => {
               {[
                 {
                   image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=100",
-                  question: "How do I apply for a visa with TravelAI?",
-                  answer: "TravelAI provides comprehensive visa guides for over 200 countries. Simply visit the 'Global Travel Resources' section, select your destination, and follow the step-by-step instructions. We also offer real-time updates on visa requirements."
+                  question: "How do I apply for a visa with TravelGenie?",
+                  answer: "TravelGenie provides comprehensive visa guides for over 200 countries. Simply visit the 'Global Travel Resources' section, select your destination, and follow the step-by-step instructions. We also offer real-time updates on visa requirements."
                 },
                 {
                   image: "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=100",
-                  question: "What safety features does TravelAI offer?",
+                  question: "What safety features does TravelGenie offer?",
                   answer: "We prioritize safety with verified accommodations, real-time safety alerts, and proximity details to hospitals and police stations. Our AI also highlights safe travel routes and local safety tips."
                 },
                 {
@@ -394,7 +394,7 @@ const About: React.FC = () => {
                 {
                   image: "https://images.pexels.com/photos/3183186/pexels-photo-3183186.jpeg?auto=compress&cs=tinysrgb&w=100",
                   question: "What documents do I need for travel?",
-                  answer: "Required documents vary by destination. TravelAI’s platform provides a checklist for each country, including passports, visas, and health certificates. Access these in the 'Plan Trip' section."
+                  answer: "Required documents vary by destination. TravelGenie’s platform provides a checklist for each country, including passports, visas, and health certificates. Access these in the 'Plan Trip' section."
                 },
               ].map((faq, index) => (
                 <motion.div

@@ -97,7 +97,7 @@ const Footer = () => {
                   <MapPin className="w-6 h-6 text-white" />
                 </motion.div>
                 <motion.div variants={textVariants} className="flex">
-                  {"TravelAI".split("").map((letter, i) => (
+                  {"TravelGenie".split("").map((letter, i) => (
                     <motion.span key={i} variants={textVariants}>
                       {letter}
                     </motion.span>
@@ -113,7 +113,7 @@ const Footer = () => {
                   { Icon: Twitter, link: "https://twitter.com" },
                   { Icon: Facebook, link: "https://facebook.com" },
                   { Icon: Instagram, link: "https://instagram.com" },
-                  { Icon: Mail, link: "mailto:support@travelai.com" },
+                  { Icon: Mail, link: "mailto:support@travelgenie.com" },
                 ].map(({ Icon, link }, index) => (
                   <motion.a
                     key={index}
@@ -278,7 +278,7 @@ const Footer = () => {
             className="border-t border-[#5E25F1]/20 mt-6 pt-9 text-center text-white/60"
           >
             <motion.p variants={textVariants}>
-              &copy; 2025 TravelAI. All rights reserved. Built with 💜 for travelers worldwide.
+              &copy; 2025 Travel Genie. All rights reserved. Built with 💜 for travelers worldwide.
             </motion.p>
           </motion.div>
         </motion.div>

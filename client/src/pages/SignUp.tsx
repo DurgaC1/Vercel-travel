@@ -208,7 +208,7 @@ const SignUp: React.FC = () => {
       >
         <div className="text-center">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-[#5E25F1] to-[#4B1EC7] bg-clip-text text-transparent">
-            Join TravelAI
+            Join Travel Genie
           </h2>
           <p className="mt-2 text-sm text-purple-800">
             Already have an account?{" "}

@@ -45,10 +45,10 @@ const mockNotifications: Notification[] = [
     _id: "notif2",
     type: "birthday",
     title: "Birthday Wish",
-    message: "Happy Birthday from the TravelAI team! Enjoy 20% off your next trip booking.",
+    message: "Happy Birthday from the Travel Genie team! Enjoy 20% off your next trip booking.",
     sender: {
       _id: "system",
-      name: "TravelAI Team",
+      name: "Travel Genie Team",
       avatar: "https://example.com/travelai-logo.png",
     },
     status: "pending",
@@ -80,7 +80,7 @@ const mockNotifications: Notification[] = [
     message: "Your flight to Paris has been confirmed. Check details in the app.",
     sender: {
       _id: "system",
-      name: "TravelAI System",
+      name: "Travel Genie System",
     },
     trip: {
       _id: "trip1",

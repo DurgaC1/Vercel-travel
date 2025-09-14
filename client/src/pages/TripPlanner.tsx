@@ -82,7 +82,7 @@ const TripPlanner = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            Choose your adventure type to create a personalized travel experience with TravelAI.
+            Choose your adventure type to create a personalized travel experience with Travel Genie.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

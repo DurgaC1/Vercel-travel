@@ -89,7 +89,7 @@ const Navbar: React.FC = () => {
               <MapPin className="w-5 h-5 text-white" />
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-[#5E25F1] to-[#4B1EC7] bg-clip-text text-transparent">
-              TravelAI
+              Travel Genie
             </span>
           </Link>
           <div className="hidden md:flex items-center space-x-6">

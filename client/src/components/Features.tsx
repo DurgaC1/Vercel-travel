@@ -48,7 +48,7 @@ const Features = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Why Choose <span className="bg-gradient-to-r from-[#5E25F1] to-[#4B1EC7] bg-clip-text text-transparent">TravelAI</span>?
+            Why Choose <span className="bg-gradient-to-r from-[#5E25F1] to-[#4B1EC7] bg-clip-text text-transparent">Travel Genie</span>?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Experience the future of travel planning with AI-powered insights, 
