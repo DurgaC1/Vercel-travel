@@ -7,10 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Phone, Lock, User } from "lucide-react";
 import { auth, googleProvider } from "@/lib/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
 import { toast } from "@/components/ui/sonner";
-
-const db = getFirestore();
 
 interface SignUpResponse {
   success: boolean;
@@ -38,17 +35,18 @@ const SignUp: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [serverError, setServerError] = useState("");
+  const [isSigningUp, setIsSigningUp] = useState(false); // New flag to prevent redirect during signup
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Redirect to home if already authenticated
+    // Redirect to home only if not in signup process
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (user && !isSigningUp) {
         navigate("/");
       }
     });
     return () => unsubscribe();
-  }, [navigate]);
+  }, [navigate, isSigningUp]);
 
   const validateForm = () => {
     let isValid = true;
@@ -120,29 +118,53 @@ const SignUp: React.FC = () => {
     e.preventDefault();
     if (!validateForm()) return;
 
+    setIsSigningUp(true); // Set flag to prevent redirect
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
       const user = userCredential.user;
       await updateProfile(user, {
         displayName: `${formData.firstName} ${formData.lastName}`,
       });
-      // Store user profile in Firestore
-      await setDoc(doc(db, "users", user.uid), {
+      const token = await user.getIdToken(true); // Force refresh token
+      localStorage.setItem("token", token);
+      console.log('Firebase ID Token:', token);
+
+      // Send profile to backend
+      const profile = {
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
         mobile: formData.mobile,
         createdAt: new Date().toISOString(),
+      };
+      console.log('Sending profile to backend:', profile);
+      const response = await fetch("http://localhost:3001/api/users/profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(profile),
       });
-      const token = await user.getIdToken();
-      localStorage.setItem("token", token);
-      toast.success("Account created successfully! Please sign in to continue.");
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Fetch error:', response.status, errorText);
+        throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+      }
+      const responseData = await response.json();
+      console.log('Backend response:', responseData);
+      if (!responseData.success) {
+        throw new Error(responseData.message || "Failed to create profile");
+      }
+
+      toast.success("Account created successfully! Welcome to Travel Genie.");
       resetForm();
-      navigate("/signin");
+      setIsSigningUp(false); // Reset flag
+      navigate("/"); // Navigate to dashboard
     } catch (error: any) {
-      console.error("Sign-up error:", error);
-      let errorMessage = "Signup failed";
-      switch (error.code) {
+      console.error("Sign-up error:", error.message, error);
+      let errorMessage = "Signup failed: " + error.message;
+      switch (error.code || error.message) {
         case "auth/email-already-in-use":
           errorMessage = "Email is already registered";
           break;
@@ -160,30 +182,55 @@ const SignUp: React.FC = () => {
       }
       setServerError(errorMessage);
       toast.error(errorMessage);
+      setIsSigningUp(false); // Reset flag on error
     }
   };
 
   const handleGoogleSignUp = async () => {
+    setIsSigningUp(true); // Set flag to prevent redirect
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
-      // Store minimal user profile in Firestore
-      await setDoc(doc(db, "users", user.uid), {
+      const token = await user.getIdToken(true); // Force refresh token
+      localStorage.setItem("token", token);
+      console.log('Firebase ID Token:', token);
+
+      // Send minimal profile to backend
+      const profile = {
         firstName: user.displayName?.split(" ")[0] || "",
         lastName: user.displayName?.split(" ").slice(1).join(" ") || "",
         email: user.email || "",
-        mobile: "", // Google doesn't provide mobile; prompt user later if needed
+        mobile: "",
         createdAt: new Date().toISOString(),
-      }, { merge: true });
-      const token = await result.user.getIdToken();
-      localStorage.setItem("token", token);
-      toast.success("Account created successfully! Please sign in to continue.");
+      };
+      console.log('Sending Google profile to backend:', profile);
+      const response = await fetch("http://localhost:3001/api/users/profile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(profile),
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Fetch error:', response.status, errorText);
+        throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+      }
+      const responseData = await response.json();
+      console.log('Backend response:', responseData);
+      if (!responseData.success) {
+        throw new Error(responseData.message || "Failed to create profile");
+      }
+
+      toast.success("Account created successfully! Welcome to Travel Genie.");
       resetForm();
-      navigate("/signin");
+      setIsSigningUp(false); // Reset flag
+      navigate("/"); // Navigate to dashboard
     } catch (error: any) {
-      console.error("Google sign-up error:", error);
-      let errorMessage = "Google sign-up failed";
-      switch (error.code) {
+      console.error("Google sign-up error:", error.message, error);
+      let errorMessage = "Google sign-up failed: " + error.message;
+      switch (error.code || error.message) {
         case "auth/popup-closed-by-user":
           errorMessage = "Sign-up popup was closed";
           break;
@@ -195,6 +242,7 @@ const SignUp: React.FC = () => {
       }
       setServerError(errorMessage);
       toast.error(errorMessage);
+      setIsSigningUp(false); // Reset flag on error
     }
   };
 

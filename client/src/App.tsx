@@ -37,6 +37,8 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/trip-planner" element={<TripPlanner />} />
           <Route path="/group-trip" element={<GroupTripPlanner />} />
+          <Route path="/group-trip/:tripId" element={<GroupTripPlanner />} />
+          <Route path="/solo-trip/:tripId" element={<IndividualTripPlanner />} />
           <Route path="/solo-trip" element={<IndividualTripPlanner />} />
           <Route path="/my-trips" element={<MyTrips />} />
           <Route path="/deals" element={<Deals />} />
