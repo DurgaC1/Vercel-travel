@@ -138,7 +138,7 @@ const SignUp: React.FC = () => {
         createdAt: new Date().toISOString(),
       };
       console.log('Sending profile to backend:', profile);
-      const response = await fetch("http://localhost:3001/api/users/profile", {
+      const response = await fetch("http://localhost:3002/api/users/profile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -204,7 +204,7 @@ const SignUp: React.FC = () => {
         createdAt: new Date().toISOString(),
       };
       console.log('Sending Google profile to backend:', profile);
-      const response = await fetch("http://localhost:3001/api/users/profile", {
+      const response = await fetch("http://localhost:3002/api/users/profile", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
